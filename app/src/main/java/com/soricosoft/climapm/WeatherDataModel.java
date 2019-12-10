@@ -1,21 +1,17 @@
 package com.soricosoft.climapm;
 
-import android.util.Log;
-
 import org.json.JSONException;
 import org.json.JSONObject;
 
-public class WeatherDataModel {
+class WeatherDataModel {
 
-    // TODO: Declare the member variables here
     private double temperature;
     private int condition;
     private String cityName;
     private String iconName;
 
 
-    // TODO: Create a WeatherDataModel from a JSON:
-    public static WeatherDataModel fromJson(JSONObject jsonObject) {
+    static WeatherDataModel fromJson(JSONObject jsonObject) {
         WeatherDataModel weatherDataModel = new WeatherDataModel();
 
         try {
@@ -27,8 +23,7 @@ public class WeatherDataModel {
             weatherDataModel.condition = jsonObject.getJSONArray("weather").getJSONObject(0).getInt("id");
             weatherDataModel.iconName = updateWeatherIcon(weatherDataModel.condition);
 
-        }
-        catch (JSONException e){
+        } catch (JSONException e) {
             e.printStackTrace();
             return null;
         }
@@ -36,7 +31,6 @@ public class WeatherDataModel {
         return weatherDataModel;
     }
 
-    // TODO: Uncomment to this to get the weather image name from the condition:
     private static String updateWeatherIcon(int condition) {
 
         if (condition >= 0 && condition < 300) {
@@ -68,18 +62,15 @@ public class WeatherDataModel {
         return "dunno";
     }
 
-    // TODO: Create getter methods for temperature, city, and icon name:
-
-
-    public double getTemperature() {
+    double getTemperature() {
         return temperature;
     }
 
-    public String getCityName() {
+    String getCityName() {
         return cityName;
     }
 
-    public String getIconName() {
+    String getIconName() {
         return iconName;
     }
 }
