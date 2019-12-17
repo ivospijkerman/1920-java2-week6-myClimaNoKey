@@ -42,7 +42,7 @@ public class WeatherController extends AppCompatActivity {
     final int REQUEST_CODE = 123;
     final String WEATHER_URL = "http://api.openweathermap.org/data/2.5/weather";
     // App ID to use OpenWeather data
-    final String APP_ID = "create your weather api key (app_Id)";
+    final String APP_ID = "c83374710c2a0dac67cf930aaREDBARON929d";
     // Time between location updates (5000 milliseconds or 5 seconds)
     final long MIN_TIME = 5000;
     // Distance between location updates (1000m or 1km)
@@ -165,6 +165,7 @@ public class WeatherController extends AppCompatActivity {
             @Override
             public void onProviderDisabled(String provider) {
                 Log.d("MyClima", "locationListener: OnProviderDisabled()");
+
             }
         };
 
@@ -174,11 +175,13 @@ public class WeatherController extends AppCompatActivity {
     private void getWeatherForCurrentLocation() {
         // TODO 002: Ask permission from user
         if (ContextCompat.checkSelfPermission(this, PERMISSION_STRING) != PackageManager.PERMISSION_GRANTED) {
-            ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.ACCESS_FINE_LOCATION}, REQUEST_CODE);
-        } else {
-            // TODO 006: Register for location updates
-            locationManager.requestLocationUpdates(LOCATION_PROVIDER, MIN_TIME, MIN_DISTANCE, locationListener);
+            ActivityCompat.requestPermissions(this
+                    , new String[]{Manifest.permission.ACCESS_FINE_LOCATION}
+                    , REQUEST_CODE);
+            return;
         }
+        // TODO 006: Register for location updates
+        locationManager.requestLocationUpdates(LOCATION_PROVIDER, MIN_TIME, MIN_DISTANCE, locationListener);
     }
 
     @Override
